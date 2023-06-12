@@ -11,7 +11,6 @@ addEventListener("mousemove", (mouse) => {
     let mouseX= getXPos(mouse.clientX);
 
     let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
-    //if(rotationAngle)
     console.log(mouseX, mouseY, rotationAngle);
     padImg.style.transform = "rotate(" + rotationAngle +"deg)";
 });
