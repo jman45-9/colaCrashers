@@ -4,12 +4,13 @@
     justify-content: center;
     align-items: flex-end;
     height: 100%;
+    
 }
 
-.launchPad .padImg
+.launchPad #padImg
 {
     width: 100px;
-    height: 100px;
+    height: 200px;
     background-color: red;
 }
 
