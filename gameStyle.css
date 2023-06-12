@@ -1,0 +1,22 @@
+.launchPad 
+{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    
+}
+
+.launchPad #padImg
+{
+    width: 100px;
+    height: 200px;
+    background-color: red;
+    transform-origin: bottom center;
+}
+
+html, body 
+{
+    height: 100%;
+    margin: 0;
+}
