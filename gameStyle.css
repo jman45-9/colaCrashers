@@ -12,6 +12,7 @@
     width: 100px;
     height: 200px;
     background-color: red;
+    transform-origin: bottom center;
 }
 
 html, body 

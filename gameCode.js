@@ -3,15 +3,17 @@ const padImg = document.getElementById("padImg");
 
 window.onload = function() 
 { 
-    padImg.style.transform = "rotate(" + 45 +"deg)";
+    
 }
 
 addEventListener("mousemove", (mouse) => {
     let mouseY = getYPos(mouse.clientY);
     let mouseX= getXPos(mouse.clientX);
-    console.log(mouseX, mouseY);
-    //console.log(window.innerWidth, window.innerHeight);
-    //console.log(mouse.clientX, mouse.clientY);
+
+    let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
+    //if(rotationAngle)
+    console.log(mouseX, mouseY, rotationAngle);
+    padImg.style.transform = "rotate(" + rotationAngle +"deg)";
 });
 
 function getYPos(backwardsMouseY)
@@ -29,6 +31,12 @@ function getXPos(absoluteMouseX)
     }
     if (screenMidpoint > absoluteMouseX)
     {
-        return -(screenMidpoint - absoluteMouseX)
+        return -(screenMidpoint - absoluteMouseX);
     }
+    return 0;
+}
+
+function convertToDeg(input)
+{
+    return input * (180 / Math.PI);
 }
