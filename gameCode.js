@@ -6,16 +6,6 @@ window.onload = function()
     
 }
 
-//aims the cola can
-addEventListener("mousemove", (mouse) => {
-    let mouseY = getYPos(mouse.clientY);
-    let mouseX= getXPos(mouse.clientX);
-
-    let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
-    console.log(mouseX, mouseY, rotationAngle);
-    padImg.style.transform = "rotate(" + rotationAngle +"deg)";
-});
-
 // gets the y position of the mouse on a coordinate plane centered at the bottom center of the window
 function getYPos(backwardsMouseY)
 {
@@ -43,3 +33,15 @@ function convertToDeg(input)
 {
     return input * (180 / Math.PI);
 }
+
+//aims the cola can
+addEventListener("mousemove", (mouse) => {
+    let mouseY = getYPos(mouse.clientY);
+    let mouseX= getXPos(mouse.clientX);
+
+    let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
+    console.log(mouseX, mouseY, rotationAngle);
+    padImg.style.transform = "rotate(" + rotationAngle +"deg)";
+});
+
+
