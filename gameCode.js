@@ -7,7 +7,8 @@ window.onload = function()
 }
 
 //aims the cola can
-addEventListener("mousemove", (mouse) => {
+addEventListener("mousemove", (mouse) => 
+{
     let mouseY = getYPos(mouse.clientY);
     let mouseX= getXPos(mouse.clientX);
 
@@ -43,3 +44,15 @@ function convertToDeg(input)
 {
     return input * (180 / Math.PI);
 }
+
+//aims tracks mouse position until mouse is released and converts pos to power
+addEventListener("mousedown", (mouse) => 
+{
+    
+});
+
+//launches cola can
+addEventListener("mouseup", (mouse) => 
+{
+    
+});
