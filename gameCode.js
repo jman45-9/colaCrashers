@@ -6,18 +6,13 @@ window.onload = function()
     
 }
 
-//aims the cola can
-addEventListener("mousemove", (mouse) => 
+// *Important Functions
+// converts radians to degrees
+function convertToDeg(input)
 {
-    let mouseY = getYPos(mouse.clientY);
-    let mouseX= getXPos(mouse.clientX);
+    return input * (180 / Math.PI);
+}
 
-    let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
-    console.log(mouseX, mouseY, rotationAngle);
-    padImg.style.transform = "rotate(" + rotationAngle +"deg)";
-});
-
-// gets the y position of the mouse on a coordinate plane centered at the bottom center of the window
 function getYPos(backwardsMouseY)
 {
     return window.innerHeight - backwardsMouseY;
@@ -39,20 +34,33 @@ function getXPos(absoluteMouseX)
     return 0;
 }
 
-// converts radians to degrees
-function convertToDeg(input)
+// * Aims the cola can
+addEventListener("mousemove", (mouse) => 
 {
-    return input * (180 / Math.PI);
-}
+    let mouseY = getYPos(mouse.clientY);
+    let mouseX= getXPos(mouse.clientX);
 
-//aims tracks mouse position until mouse is released and converts pos to power
+    let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
+    //console.log(mouseX, mouseY, rotationAngle);
+    padImg.style.transform = "rotate(" + rotationAngle +"deg)";
+});
+
+// gets the y position of the mouse on a coordinate plane centered at the bottom center of the window
+
+// * cola can launching
+
+// global variables
+let mousedown = false;
+
+// activates scaling on mouse down
 addEventListener("mousedown", (mouse) => 
 {
-    
+    mousedown = true;
 });
 
-//launches cola can
+// ends scaling when mouse up
 addEventListener("mouseup", (mouse) => 
 {
-    
+    mousedown = false;
 });
+
