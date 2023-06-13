@@ -53,7 +53,7 @@ addEventListener("mousemove", (mouse) =>
 let mousedown = false;
 let initialMouseY;
 let currentMouseY;
-
+let shootingPower = 1;
 // activates scaling on mouse down
 addEventListener("mousedown", (mouse) => 
 {
@@ -72,5 +72,20 @@ addEventListener("mousemove", (mouse) =>
     if (mousedown)
     {
         currentMouseY = getYPos(mouse.clientY);
+        posToPwr();
+        console.log(shootingPower);
     }
+
 });
+
+//converts mouse position to shotting power
+function posToPwr() 
+{
+    if (currentMouseY > initialMouseY)
+        return 0;
+    let drawDistance = Math.abs(initialMouseY - currentMouseY);
+    let screenSize = window.innerHeight;
+    shootingPower = (drawDistance / screenSize) * 100;
+    if (100 < shootingPower)
+        shootingPower = 100;
+}
