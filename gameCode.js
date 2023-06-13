@@ -6,6 +6,7 @@ window.onload = function()
     
 }
 
+// * Important Functions
 // gets the y position of the mouse on a coordinate plane centered at the bottom center of the window
 function getYPos(backwardsMouseY)
 {
@@ -34,6 +35,7 @@ function convertToDeg(input)
     return input * (180 / Math.PI);
 }
 
+// * Aiming
 //aims the cola can
 addEventListener("mousemove", (mouse) => {
     let mouseY = getYPos(mouse.clientY);
