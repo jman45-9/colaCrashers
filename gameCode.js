@@ -41,8 +41,8 @@ addEventListener("mousemove", (mouse) =>
     let mouseX= getXPos(mouse.clientX);
 
     let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
-    //console.log(mouseX, mouseY, rotationAngle);
-    padImg.style.transform = "rotate(" + rotationAngle +"deg)";
+    if (!mousedown) //!see cola can launching for mousedown conditions 
+        padImg.style.transform = "rotate(" + rotationAngle +"deg)";
 });
 
 // gets the y position of the mouse on a coordinate plane centered at the bottom center of the window
@@ -51,11 +51,14 @@ addEventListener("mousemove", (mouse) =>
 
 // global variables
 let mousedown = false;
+let initialMouseY;
+let currentMouseY;
 
 // activates scaling on mouse down
 addEventListener("mousedown", (mouse) => 
 {
     mousedown = true;
+    initialMouseY = getYPos(mouse.clientY);
 });
 
 // ends scaling when mouse up
@@ -64,3 +67,10 @@ addEventListener("mouseup", (mouse) =>
     mousedown = false;
 });
 
+addEventListener("mousemove", (mouse) => 
+{
+    if (mousedown)
+    {
+        currentMouseY = getYPos(mouse.clientY);
+    }
+});
