@@ -16,13 +16,13 @@ addEventListener("mousemove", (mouse) => {
     padImg.style.transform = "rotate(" + rotationAngle +"deg)";
 });
 
-// gets the y position of the mouse on a cordinate plane centered at the bottom center of the window
+// gets the y position of the mouse on a coordinate plane centered at the bottom center of the window
 function getYPos(backwardsMouseY)
 {
     return window.innerHeight - backwardsMouseY;
 }
 
-// same as getYPos but with x cordinate
+// same as getYPos but with x coordinate
 function getXPos(absoluteMouseX) 
 {
     let screenMidpoint = (window.innerWidth / 2.0);
