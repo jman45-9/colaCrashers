@@ -53,7 +53,9 @@ class PowerBar
 {
     setValue(power) 
     {
-        document.getElementById("powerFill").style.height = power + "%";
+        const id = document.getElementById("powerFill");
+        id.style.height = power + "%";
+        id.style.backgroundColor = "hsl(" + (100 - power) + " 100% 50%)";
     }
 
 }
@@ -103,7 +105,7 @@ function posToPwr()
         return 0;
     let drawDistance = Math.abs(initialMouseY - currentMouseY);
     let screenSize = window.innerHeight;
-    shootingPower = (drawDistance / screenSize) * 100;
+    shootingPower = ((drawDistance*2) / screenSize) * 100;
     if (100 < shootingPower)
         shootingPower = 100;
 }
