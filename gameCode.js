@@ -108,6 +108,7 @@ function launch()
 {
     let yChange = Math.abs(initialMouseY / (initialMouseX));
     let screenMidpoint = window.innerWidth / 2.0;
+    // !interval timers should be factors of the power scaling
     if (0 > initialMouseX && !launchIntervalID)
         launchIntervalID = setInterval(movingLeft, 10, yChange);
     else if(!launchIntervalID)
@@ -120,6 +121,10 @@ function movingLeft(yChange)
     yPos += yChange;
     padImg.style.marginRight = xPos +"px";
     padImg.style.marginBottom = yPos +"px";
+
+    // !constants will be variables that tell the can when to stop later
+    if((window.innerWidth - 10) < xPos || (window.innerHeight - 10) < yPos) 
+        clearInterval(launchIntervalID);
 }
 
 function movingRight(yChange)
@@ -128,4 +133,6 @@ function movingRight(yChange)
     yPos += yChange;
     padImg.style.marginLeft = xPos +"px";
     padImg.style.marginBottom = yPos +"px";
+    if((window.innerWidth - 10) < xPos || (window.innerHeight - 10) < yPos)
+        clearInterval(launchIntervalID);
 }
