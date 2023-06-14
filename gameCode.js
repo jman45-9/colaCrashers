@@ -43,7 +43,7 @@ addEventListener("mousemove", (mouse) =>
     let mouseX= getXPos(mouse.clientX);
 
     let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
-    if (!mousedown) //!see cola can launching for mousedown conditions 
+    if (!mousedown && !inFlight) //!see cola can launching for conditions 
         padImg.style.transform = "rotate(" + rotationAngle +"deg)";
 });
 
@@ -103,6 +103,7 @@ function posToPwr()
 let launchIntervalID = 0;
 let xPos = 0;
 let yPos = 0;
+let inFlight = false;
 
 function launch() 
 {
@@ -110,9 +111,15 @@ function launch()
     let screenMidpoint = window.innerWidth / 2.0;
     // !interval timers should be factors of the power scaling
     if (0 > initialMouseX && !launchIntervalID)
+    {
+        inFlight = true;
         launchIntervalID = setInterval(movingLeft, 10, yChange);
+    } 
     else if(!launchIntervalID)
+    {
+        inFlight = true;
         launchIntervalID = setInterval(movingRight, 10, yChange);
+    }
 }
 
 function movingLeft(yChange)
@@ -124,7 +131,10 @@ function movingLeft(yChange)
 
     // !constants will be variables that tell the can when to stop later
     if((window.innerWidth - 10) < xPos || (window.innerHeight - 10) < yPos) 
+    {
         clearInterval(launchIntervalID);
+        inFlight = false;
+    }   
 }
 
 function movingRight(yChange)
@@ -134,5 +144,8 @@ function movingRight(yChange)
     padImg.style.marginLeft = xPos +"px";
     padImg.style.marginBottom = yPos +"px";
     if((window.innerWidth - 10) < xPos || (window.innerHeight - 10) < yPos)
+    {
         clearInterval(launchIntervalID);
+        inFlight = false
+    }
 }
