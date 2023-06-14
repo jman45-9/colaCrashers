@@ -72,6 +72,7 @@ addEventListener("mousedown", (mouse) =>
 addEventListener("mouseup", (mouse) => 
 {
     mousedown = false;
+    launch();
 });
 
 addEventListener("mousemove", (mouse) => 
@@ -80,7 +81,6 @@ addEventListener("mousemove", (mouse) =>
     {
         currentMouseY = getYPos(mouse.clientY);
         posToPwr();
-        launch();
     }
 
 });
@@ -101,25 +101,31 @@ function posToPwr()
 
 //more globals
 let launchIntervalID = 0;
+let xPos = 0;
+let yPos = 0;
 
 function launch() 
 {
-    let yPos = 0;
-    let xPos = 0;
     let yChange = Math.abs(initialMouseY / (initialMouseX));
     let screenMidpoint = window.innerWidth / 2.0;
-    if (0 > initialMouseX)
-        launchIntervalID = setInterval(movingLeft, 90, yChange);
-    else 
-        launchIntervalID = setInterval(movingRight, 90, yChange);
+    if (0 > initialMouseX && !launchIntervalID)
+        launchIntervalID = setInterval(movingLeft, 10, yChange);
+    else if(!launchIntervalID)
+        launchIntervalID = setInterval(movingRight, 10, yChange);
 }
 
 function movingLeft(yChange)
 {
-
+    xPos += 1;
+    yPos += yChange;
+    padImg.style.marginRight = xPos +"px";
+    padImg.style.marginBottom = yPos +"px";
 }
 
 function movingRight(yChange)
 {
-    
+    xPos += 1;
+    yPos += yChange;
+    padImg.style.marginLeft = xPos +"px";
+    padImg.style.marginBottom = yPos +"px";
 }
