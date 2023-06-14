@@ -47,8 +47,18 @@ addEventListener("mousemove", (mouse) =>
         padImg.style.transform = "rotate(" + rotationAngle +"deg)";
 });
 
-// gets the y position of the mouse on a coordinate plane centered at the bottom center of the window
+// * Power bar class and code
 
+class PowerBar
+{
+    setValue(power) 
+    {
+        document.getElementById("powerFill").style.height = power + "%";
+    }
+
+}
+
+let powerBar = new PowerBar();
 // * cola can launching
 
 
@@ -81,6 +91,7 @@ addEventListener("mousemove", (mouse) =>
     {
         currentMouseY = getYPos(mouse.clientY);
         posToPwr();
+        powerBar.setValue(shootingPower);
     }
 
 });
@@ -150,19 +161,3 @@ function movingRight(yChange)
     }
 }
 
-// * Power bar class and code
-
-class PowerBar
-{
-    constructor(id) {
-        this.id = id;
-        this.pct = 0;
-    }
-
-    setValue(power) {
-
-    }
-
-}
-
-let powerBar = PowerBar(document.getElementsByClassName("powerFill"));

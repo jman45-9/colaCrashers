@@ -24,9 +24,9 @@
     top: 7%;
     right: 1%;
 }
-.powerBar .powerFill
+.powerBar #powerFill
 {
-    height: 33%;
+    height: 0%;
     width: 100%; /* !DO NOT CHANGE FROM 100% */
     position: absolute;
     bottom: 0px;
