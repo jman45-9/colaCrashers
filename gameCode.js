@@ -149,3 +149,20 @@ function movingRight(yChange)
         inFlight = false
     }
 }
+
+// * Power bar class and code
+
+class PowerBar
+{
+    constructor(id) {
+        this.id = id;
+        this.pct = 0;
+    }
+
+    setValue(power) {
+
+    }
+
+}
+
+let powerBar = PowerBar(document.getElementsByClassName("powerFill"));
