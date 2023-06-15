@@ -169,9 +169,22 @@ function fall()
     let roundedBottom = Math.floor(parseInt(padImg.style.marginBottom));
     padImg.style.marginBottom = roundedBottom + "px";
     padImg.style.marginBottom = (roundedBottom - 5) + "px";
-    if(0 >= roundedBottom)
+    if(-250 >= roundedBottom) // !set constant to -(1.25*heightOfSprite)
     {
         inFlight = false
         clearInterval(fallIntervalID);
+        reset();
     }
+}
+
+function reset()
+{
+    launchIntervalID = 0;
+    padImg.style.marginTop = 0;
+    padImg.style.marginLeft = 0;
+    padImg.style.marginRight = 0;
+    padImg.style.marginBottom = 0;
+    xPos = 0;
+    yPos = 0;
+    document.getElementById("powerFill").style.height = "0%";
 }
