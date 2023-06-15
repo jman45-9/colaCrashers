@@ -132,31 +132,53 @@ function posToPwr()
 //more globals
 let launchIntervalID = 0;
 
+function getSpeedFactor()
+{
+    let relativeAngle = Math.abs(rotationAngle)
+    if(45 > relativeAngle)
+    {
+        console.log(relativeAngle, 45 - relativeAngle);
+        if (10 > relativeAngle)
+            return ((0.25* (45-relativeAngle)));
+        return ((0.5* (45-relativeAngle)));
+    } 
+    else if (45 < relativeAngle)
+    {
+        console.log(relativeAngle, relativeAngle - 45);
+        return ((2* (45-(relativeAngle-45))));
+    }
+    else 
+    {
+        return 0;
+    }
+}
 
 function launch() 
 {
-    let yChange = Math.abs(Math.tan(rotationAngle));
-    //let speedFactor = ;
-    //yChange = ;
-    //let xChange = ; 
+    let yChange = Math.abs((initialMouseY / initialMouseX));
+    let speedFactor = getSpeedFactor();
+    yChange *= speedFactor;
+    let xChange = speedFactor;
+    //console.log(xChange);
     let screenMidpoint = window.innerWidth / 2.0;
     // !interval timers should be factors of the power scaling
     if (0 > initialMouseX && !launchIntervalID)
     {
         can.inFlight = true;
-        launchIntervalID = setInterval(movingLeft, 10, yChange);
+        launchIntervalID = setInterval(movingLeft, 10, yChange, xChange);
     } 
     else if(!launchIntervalID)
     {
         can.inFlight = true;
-        launchIntervalID = setInterval(movingRight, 10, yChange);
+        launchIntervalID = setInterval(movingRight, 10, yChange, xChange);
     }
 }
 
-function movingLeft(yChange)
+function movingLeft(yChange, xChange)
 {
-    can.xPos += 1;
+    can.xPos += xChange;
     can.yPos += yChange;
+    console.log(xChange, yChange);
     padImg.style.marginRight = can.xPos +"px";
     padImg.style.marginBottom = can.yPos +"px";
 
@@ -164,13 +186,15 @@ function movingLeft(yChange)
     if((window.innerWidth - 10) < can.xPos || (window.innerHeight - 10) < can.yPos) 
     {
         clearInterval(launchIntervalID);
+        xChange = 0;
+        yChange = 0;
         fallIntervalID = setInterval(fall, 1);
     }   
 }
 
-function movingRight(yChange)
+function movingRight(yChange, xChange)
 {
-    can.xPos += 1;
+    can.xPos += xChange;
     can.yPos += yChange;
     padImg.style.marginLeft = can.xPos +"px";
     padImg.style.marginBottom = can.yPos +"px";
