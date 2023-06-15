@@ -62,12 +62,13 @@ function getXPos(absoluteMouseX)
 }
 
 // * Aims the cola can
+let rotationAngle;
 addEventListener("mousemove", (mouse) => 
 {
     let mouseY = getYPos(mouse.clientY);
     let mouseX= getXPos(mouse.clientX);
 
-    let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
+    rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
     if (!mousedown && !can.inFlight) //!see cola can launching for conditions 
         padImg.style.transform = "rotate(" + rotationAngle +"deg)";
 });
@@ -134,7 +135,10 @@ let launchIntervalID = 0;
 
 function launch() 
 {
-    let yChange = Math.abs(initialMouseY / (initialMouseX));
+    let yChange = Math.abs(Math.tan(rotationAngle));
+    //let speedFactor = ;
+    //yChange = ;
+    //let xChange = ; 
     let screenMidpoint = window.innerWidth / 2.0;
     // !interval timers should be factors of the power scaling
     if (0 > initialMouseX && !launchIntervalID)
