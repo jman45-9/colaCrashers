@@ -211,7 +211,7 @@ function fall()
     let roundedBottom = Math.floor(parseInt(padImg.style.marginBottom));
     padImg.style.marginBottom = roundedBottom + "px";
     padImg.style.marginBottom = (roundedBottom - 5) + "px";
-    if(-250 >= roundedBottom) // !set constant to -(1.25*heightOfSprite)
+    if(-250 >= roundedBottom) // !set constant to -(3.84615*heightOfSprite)
     {
         can.inFlight = false
         clearInterval(fallIntervalID);

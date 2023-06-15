@@ -8,8 +8,8 @@
 
 .launchPad #padImg
 {
-    width: 100px;
-    height: 200px;
+    width: 65px;
+    height: 65px;
     background-color: red;
     transform-origin: bottom center;
 }
