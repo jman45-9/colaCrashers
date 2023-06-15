@@ -146,7 +146,7 @@ function movingLeft(yChange)
     if((window.innerWidth - 10) < xPos || (window.innerHeight - 10) < yPos) 
     {
         clearInterval(launchIntervalID);
-        inFlight = false;
+        fallIntervalID = setInterval(fall, 1);
     }   
 }
 
@@ -159,7 +159,19 @@ function movingRight(yChange)
     if((window.innerWidth - 10) < xPos || (window.innerHeight - 10) < yPos)
     {
         clearInterval(launchIntervalID);
-        inFlight = false
+        fallIntervalID = setInterval(fall, 1);
     }
 }
 
+let fallIntervalID;
+function fall()
+{
+    let roundedBottom = Math.floor(parseInt(padImg.style.marginBottom));
+    padImg.style.marginBottom = roundedBottom + "px";
+    padImg.style.marginBottom = (roundedBottom - 5) + "px";
+    if(0 >= roundedBottom)
+    {
+        inFlight = false
+        clearInterval(fallIntervalID);
+    }
+}
