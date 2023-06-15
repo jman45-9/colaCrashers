@@ -17,15 +17,17 @@ class Can
 {
     constructor() 
     {
-        xPos = 0;
-        yPos = 0;
-        inFlight = false;
-        const id = document.getElementById("padImg");
+        this.xPos = 0;
+        this.yPos = 0;
+        this.inFlight = false;
+        this.id = document.getElementById("padImg");
     }
+
+
 }
 
 //global variables
-
+const can = new Can();
 window.onload = function() 
 { 
     
