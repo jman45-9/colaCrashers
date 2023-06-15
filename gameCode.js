@@ -1,5 +1,28 @@
 
-const padImg = document.getElementById("padImg");
+
+
+//classes
+class PowerBar
+{
+    setValue(power) 
+    {
+        const id = document.getElementById("powerFill");
+        id.style.height = power + "%";
+        id.style.backgroundColor = "hsl(" + (100 - power) + " 100% 50%)";
+    }
+
+}
+
+class Can
+{
+    constructor() 
+    {
+        xPos = 0;
+        yPos = 0;
+        inFlight = false;
+        const id = document.getElementById("padImg");
+    }
+}
 
 //global variables
 
@@ -43,22 +66,13 @@ addEventListener("mousemove", (mouse) =>
     let mouseX= getXPos(mouse.clientX);
 
     let rotationAngle = convertToDeg(Math.atan(mouseX / mouseY));
-    if (!mousedown && !inFlight) //!see cola can launching for conditions 
+    if (!mousedown && !can.inFlight) //!see cola can launching for conditions 
         padImg.style.transform = "rotate(" + rotationAngle +"deg)";
 });
 
 // * Power bar class and code
 
-class PowerBar
-{
-    setValue(power) 
-    {
-        const id = document.getElementById("powerFill");
-        id.style.height = power + "%";
-        id.style.backgroundColor = "hsl(" + (100 - power) + " 100% 50%)";
-    }
 
-}
 
 let powerBar = new PowerBar();
 // * cola can launching
@@ -114,9 +128,7 @@ function posToPwr()
 
 //more globals
 let launchIntervalID = 0;
-let xPos = 0;
-let yPos = 0;
-let inFlight = false;
+
 
 function launch() 
 {
@@ -125,25 +137,25 @@ function launch()
     // !interval timers should be factors of the power scaling
     if (0 > initialMouseX && !launchIntervalID)
     {
-        inFlight = true;
+        can.inFlight = true;
         launchIntervalID = setInterval(movingLeft, 10, yChange);
     } 
     else if(!launchIntervalID)
     {
-        inFlight = true;
+        can.inFlight = true;
         launchIntervalID = setInterval(movingRight, 10, yChange);
     }
 }
 
 function movingLeft(yChange)
 {
-    xPos += 1;
-    yPos += yChange;
-    padImg.style.marginRight = xPos +"px";
-    padImg.style.marginBottom = yPos +"px";
+    can.xPos += 1;
+    can.yPos += yChange;
+    padImg.style.marginRight = can.xPos +"px";
+    padImg.style.marginBottom = can.yPos +"px";
 
     // !constants will be variables that tell the can when to stop later
-    if((window.innerWidth - 10) < xPos || (window.innerHeight - 10) < yPos) 
+    if((window.innerWidth - 10) < can.xPos || (window.innerHeight - 10) < can.yPos) 
     {
         clearInterval(launchIntervalID);
         fallIntervalID = setInterval(fall, 1);
@@ -152,11 +164,11 @@ function movingLeft(yChange)
 
 function movingRight(yChange)
 {
-    xPos += 1;
-    yPos += yChange;
-    padImg.style.marginLeft = xPos +"px";
-    padImg.style.marginBottom = yPos +"px";
-    if((window.innerWidth - 10) < xPos || (window.innerHeight - 10) < yPos)
+    can.xPos += 1;
+    can.yPos += yChange;
+    padImg.style.marginLeft = can.xPos +"px";
+    padImg.style.marginBottom = can.yPos +"px";
+    if((window.innerWidth - 10) < can.xPos || (window.innerHeight - 10) < can.yPos)
     {
         clearInterval(launchIntervalID);
         fallIntervalID = setInterval(fall, 1);
@@ -171,7 +183,7 @@ function fall()
     padImg.style.marginBottom = (roundedBottom - 5) + "px";
     if(-250 >= roundedBottom) // !set constant to -(1.25*heightOfSprite)
     {
-        inFlight = false
+        can.inFlight = false
         clearInterval(fallIntervalID);
         reset();
     }
@@ -184,7 +196,7 @@ function reset()
     padImg.style.marginLeft = 0;
     padImg.style.marginRight = 0;
     padImg.style.marginBottom = 0;
-    xPos = 0;
-    yPos = 0;
+    can.xPos = 0;
+    can.yPos = 0;
     document.getElementById("powerFill").style.height = "0%";
 }
