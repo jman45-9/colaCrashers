@@ -49,21 +49,11 @@ class BasicEnemy
         this.#htmlID = document.createElement("img");
         this.#htmlID.src = "assets/images/enemyPlaceHolder.png";
         this.#htmlID.style.position = "absolute";
-        this.#htmlID.height = "64px";
-        this.#htmlID.width = "64px";
+        this.#htmlID.style.height = "64px";
+        this.#htmlID.style.width = "64px";
         this.#htmlID.style.top = "100px";
         this.#htmlID.style.left = "100px";
         document.body.appendChild(this.#htmlID);
-    }
-
-    createEnemyImg()
-    {
-        console.log("TEST");
-        let pic = document.createElement("img");
-        pic.src = "assets/images/enemyPlaceHolder.png";
-        pic.height = "64px";
-        pic.width = "64px";
-        return pic;
     }
 
 }
@@ -71,12 +61,17 @@ class BasicEnemy
 //global variables
 const can = new Can();
 let enemyIntervalID = 0;
+const test = new BasicEnemy(4);
 window.onload = function() 
 { 
-    const test = new BasicEnemy(4);
-    test.createEnemy();
+    
+    
 }
 
+document.addEventListener('DOMContentLoaded', function() 
+{
+    test.createEnemy();
+});
 // *Important Functions
 // converts radians to degrees
 function convertToDeg(input)
