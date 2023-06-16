@@ -51,9 +51,11 @@ class BasicEnemy
         this.#htmlID.style.position = "absolute";
         this.#htmlID.style.height = "64px";
         this.#htmlID.style.width = "64px";
-        this.#htmlID.style.top = "100px";
-        this.#htmlID.style.left = "100px";
+        this.#htmlID.style.left = (window.innerWidth * (this.#xPos / 100)) +"px";
+        this.#htmlID.style.top = (window.innerHeight * (this.#yPos / 100)) +"px";
         document.body.appendChild(this.#htmlID);
+        this.#xPos = xPctToPos(this.#xPos);
+        this.#yPos = yPctToPos(this.#yPos);
     }
 
 }
@@ -61,19 +63,27 @@ class BasicEnemy
 //global variables
 const can = new Can();
 let enemyIntervalID = 0;
-const test = new BasicEnemy(4);
+
 window.onload = function() 
 { 
-    
-    
+    const test = new BasicEnemy(7);
+    test.createEnemy();
 }
 
-document.addEventListener('DOMContentLoaded', function() 
-{
-    test.createEnemy();
-});
 // *Important Functions
-// converts radians to degrees
+// % to Pos functions
+function xPctToPos(xPct)
+{
+    let screenPixels = window.innerWidth;
+    return getXPos(screenPixels*(xPct / 100))
+}
+
+function yPctToPos(yPct)
+{
+    let screenPixels = window.innerHeight;
+    return getYPos(screenPixels*(yPct / 100))
+}
+// converts radians to degree
 function convertToDeg(input)
 {
     return input * (180 / Math.PI);
