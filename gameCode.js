@@ -46,17 +46,19 @@ class BasicEnemy
         this.#xPos = (10*this.#enemyID) - (2*this.#enemyID); // both in pct
         this.#yPos = 50;
 
-        this.#htmlID = document.createElement("div");
+        this.#htmlID = document.createElement("img");
+        this.#htmlID.src = "assets/images/enemyPlaceHolder.png";
         this.#htmlID.style.position = "absolute";
+        this.#htmlID.height = "64px";
+        this.#htmlID.width = "64px";
         this.#htmlID.style.top = "100px";
         this.#htmlID.style.left = "100px";
-        this.#htmlID.style.zIndex = "4";
-        this.#htmlID.appendChild(this.createEnemyImg());
-        document.getElementById('body').appendChild(this.#htmlID);
+        document.body.appendChild(this.#htmlID);
     }
 
     createEnemyImg()
     {
+        console.log("TEST");
         let pic = document.createElement("img");
         pic.src = "assets/images/enemyPlaceHolder.png";
         pic.height = "64px";
