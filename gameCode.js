@@ -26,11 +26,31 @@ class Can
 
 }
 
+class BasicEnemy
+{
+    #xPos;
+    #yPos;
+    #enemyID;
+    #htmlID;
+    constructor(enemyID)
+    {
+        this.#enemyID = enemyID;
+    }
+
+    getID() {return this.#enemyID}
+    getX() {return this.#xPos}
+    getY() {return this.#yPos}
+    
+    
+
+}
+
 //global variables
 const can = new Can();
+let enemyIntervalID = 0;
 window.onload = function() 
 { 
-    
+    enemyIntervalID = setInterval(createEnemy)
 }
 
 // *Important Functions
@@ -230,3 +250,5 @@ function reset()
     can.yPos = 0;
     document.getElementById("powerFill").style.height = "0%";
 }
+
+// * enemies
