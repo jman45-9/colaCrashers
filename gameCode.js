@@ -46,7 +46,22 @@ class BasicEnemy
         this.#xPos = (10*this.#enemyID) - (2*this.#enemyID); // both in pct
         this.#yPos = 50;
 
-        
+        this.#htmlID = document.createElement("div");
+        this.#htmlID.style.position = "absolute";
+        this.#htmlID.style.top = "100px";
+        this.#htmlID.style.left = "100px";
+        this.#htmlID.style.zIndex = "4";
+        this.#htmlID.appendChild(this.createEnemyImg());
+        document.getElementById('body').appendChild(this.#htmlID);
+    }
+
+    createEnemyImg()
+    {
+        let pic = document.createElement("img");
+        pic.src = "assets/images/enemyPlaceHolder.png";
+        pic.height = "64px";
+        pic.width = "64px";
+        return pic;
     }
 
 }
@@ -56,7 +71,8 @@ const can = new Can();
 let enemyIntervalID = 0;
 window.onload = function() 
 { 
-    enemyIntervalID = setInterval(createEnemy)
+    const test = new BasicEnemy(4);
+    test.createEnemy();
 }
 
 // *Important Functions
