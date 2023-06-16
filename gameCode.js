@@ -41,7 +41,13 @@ class BasicEnemy
     getX() {return this.#xPos}
     getY() {return this.#yPos}
     
-    
+    createEnemy()
+    {
+        this.#xPos = (10*this.#enemyID) - (2*this.#enemyID); // both in pct
+        this.#yPos = 50;
+
+        
+    }
 
 }
 
