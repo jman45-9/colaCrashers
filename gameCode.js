@@ -63,11 +63,10 @@ class BasicEnemy
 //global variables
 const can = new Can();
 let enemyIntervalID = 0;
-
+let basicEnemies = [];
 window.onload = function() 
 { 
-    const test = new BasicEnemy(7);
-    test.createEnemy();
+    initEnemies();
 }
 
 // *Important Functions
@@ -281,3 +280,12 @@ function reset()
 }
 
 // * enemies
+
+function initEnemies()
+{
+    for(let iii = 0; 7 > iii; iii += 1)
+    {
+        basicEnemies.push(new BasicEnemy(iii));
+        basicEnemies[iii].createEnemy();
+    }
+}
